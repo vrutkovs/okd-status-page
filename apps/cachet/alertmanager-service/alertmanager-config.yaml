@@ -5,10 +5,10 @@ metadata:
 spec:
   route:
     receiver: cachet
-    group_by: [alertname]
-    group_wait: 30s
-    group_interval: 1m
-    repeat_interval: 1h
+    groupBy: [alertname]
+    groupWait: 30s
+    groupInterval: 1m
+    repeatInterval: 1h
   receivers:
   - name: cachet
     webhookConfigs:
