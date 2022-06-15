@@ -43,6 +43,10 @@ spec:
           env:
             - name: PORT
               value: '8080'
+            - name: CACHET_URL
+              value: 'http://cachet:8080'
+            - name: CACHET_TOKEN
+              value: '7Enlv72UtstgmQxbhpB4'
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
