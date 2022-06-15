@@ -18,3 +18,14 @@ spec:
     automated: {}
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    name: cachet
+    jsonPointers:
+    - /spec/template/spec/containers/0/image
+  - group: apps.openshift.io
+    kind: DeploymentConfig
+    name: postgresql
+    jsonPointers:
+    - /spec/template/spec/containers/0/image
