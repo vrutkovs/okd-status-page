@@ -9,7 +9,7 @@ spec:
     - name: stable
       from:
         kind: DockerImage
-        name: 'docker.io/cachethq/docker:2.3.18'
+        name: 'quay.io/vrutkovs/cachet:devel'
       importPolicy: {}
       referencePolicy:
         type: Source
