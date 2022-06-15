@@ -11,11 +11,9 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: default
   source:
-    path: apps/argocd
+    path: apps
     repoURL: 'https://github.com/vrutkovs/okd-status-page'
     targetRevision: HEAD
-    directory:
-      recurse: true
   syncPolicy:
     automated: {}
   retry:
