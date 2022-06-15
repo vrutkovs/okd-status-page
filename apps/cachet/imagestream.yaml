@@ -7,11 +7,9 @@ spec:
     local: false
   tags:
     - name: stable
-      annotations: null
       from:
         kind: DockerImage
         name: 'docker.io/cachethq/docker:2.3.18'
-      generation: 3
       importPolicy: {}
       referencePolicy:
         type: Source
