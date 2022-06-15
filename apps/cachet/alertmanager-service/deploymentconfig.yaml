@@ -44,7 +44,7 @@ spec:
               value: '8080'
             - name: CACHET_URL
               value: 'http://cachet:8080'
-            - name: CACHET_TOKEN
+            - name: CACHET_KEY
               value: '7Enlv72UtstgmQxbhpB4'
           resources: {}
           terminationMessagePath: /dev/termination-log
