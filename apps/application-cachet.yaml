@@ -9,7 +9,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   project: cachet
   source:
-    path: cachet
+    path: apps/cachet
     repoURL: 'https://github.com/vrutkovs/okd-status-page'
     targetRevision: HEAD
     directory:
