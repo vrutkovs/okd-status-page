@@ -1,0 +1,45 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: alertmanager-main
+  namespace: openshift-monitoring
+stringData:
+  alertmanager.yaml: >-
+    global:
+      resolve_timeout: 5m
+    inhibit_rules:
+      - equal:
+          - namespace
+          - alertname
+        source_matchers:
+          - severity = critical
+        target_matchers:
+          - severity =~ warning|info
+      - equal:
+          - namespace
+          - alertname
+        source_matchers:
+          - severity = warning
+        target_matchers:
+          - severity = info
+    receivers:
+      - name: Default
+        webhook_configs:
+          - url: 'http://prometheus-cachet.cachet.svc.cluster.local:8080/webhook'
+      - name: Watchdog
+      - name: Critical
+    route:
+      group_by:
+        - namespace
+      group_interval: 5m
+      group_wait: 30s
+      receiver: Default
+      repeat_interval: 12h
+      routes:
+        - matchers:
+            - alertname = Watchdog
+          receiver: Watchdog
+        - matchers:
+            - severity = critical
+          receiver: Critical
+type: Opaque
