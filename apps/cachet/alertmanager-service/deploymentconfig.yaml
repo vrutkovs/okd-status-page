@@ -23,7 +23,6 @@ spec:
           - prometheus-cachet
         from:
           kind: ImageStreamTag
-          namespace: cachet-dev
           name: 'prometheus-cachet:latest'
     - type: ConfigChange
   replicas: 1
