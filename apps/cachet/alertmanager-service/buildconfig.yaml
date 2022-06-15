@@ -17,7 +17,7 @@ spec:
   source:
     type: Git
     git:
-      uri: 'https://github.com/gregdhill/prometheus-cachet'
+      uri: 'https://github.com/vrutkovs/prometheus-cachet'
     contextDir: /
   triggers:
     - type: ConfigChange
