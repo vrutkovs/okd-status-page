@@ -29,3 +29,8 @@ spec:
     name: postgresql
     jsonPointers:
     - /spec/template/spec/containers/0/image
+  - group: apps.openshift.io
+    kind: DeploymentConfig
+    name: prometheus-cachet
+    jsonPointers:
+    - /spec/template/spec/containers/0/image

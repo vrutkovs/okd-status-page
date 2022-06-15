@@ -1,0 +1,12 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: prometheus-cachet
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: latest
+      importPolicy: {}
+      referencePolicy:
+        type: Source

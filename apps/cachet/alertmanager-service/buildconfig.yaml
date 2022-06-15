@@ -1,0 +1,24 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: prometheus-cachet
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'prometheus-cachet:latest'
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/gregdhill/prometheus-cachet'
+    contextDir: /
+  triggers:
+    - type: ConfigChange
+  runPolicy: Serial
