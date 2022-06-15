@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cachet-config
+data:
+  QUEUE_DRIVER: database
+  CACHE_DRIVER: database
+  SESSION_DRIVER: file
+  DEBUG: "false"
+  APP_DEBUG: "false"
+  APP_LOG: errorlog
+  APP_KEY: GCvcgDKMRIN498g52zfVEd9CxDs6PR7q

@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cachet
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: cachet
+    server: 'https://kubernetes.default.svc'
+  project: cachet
+  source:
+    path: cachet
+    repoURL: 'https://github.com/vrutkovs/okd-status-page'
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - CreateNamespace=true
+    directory:
+      recurse: true
+  retry:
+    limit: 5
+    backoff:
+      duration: 5s
+      factor: 2
+      maxDuration: 3m

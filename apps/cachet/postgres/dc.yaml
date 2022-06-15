@@ -24,12 +24,12 @@ spec:
   revisionHistoryLimit: 10
   test: false
   selector:
-    name: postgresql
+    app: postgresql
   template:
     metadata:
       creationTimestamp: null
       labels:
-        name: postgresql
+        app: postgresql
     spec:
       volumes:
         - name: postgresql-data

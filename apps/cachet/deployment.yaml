@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    image.openshift.io/triggers: >-
+      [{"from":{"kind":"ImageStreamTag","name":"cachet:stable"},"fieldPath":"spec.template.spec.containers[?(@.name==\"cachet\")].image","pause":"false"}]
+  name: cachet
+  labels:
+    app: cachet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cachet
+  template:
+    metadata:
+      labels:
+        app: cachet
+    spec:
+      containers:
+      - env:
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_PREFIX
+          value: chq_
+        - name: DB_DRIVER
+          value: "pgsql"
+        - name: DB_HOST
+          value: "postgresql"
+        - name: DB_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: postgresql
+              key: database-name
+        - name: DB_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgresql
+              key: database-user
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgresql
+              key: database-password
+        envFrom:
+        - configMapRef:
+            name: cachet-config
+        image: ''
+        name: cachet
+        ports:
+        - containerPort: 8000
+        resources: {}
+      initContainers:
+      - name: init-postgres
+        image: busybox
+        command: ['sh', '-c', 'until nc -z postgresql:5432; do echo waiting for postgres; sleep 2; done;']
+      restartPolicy: Always
